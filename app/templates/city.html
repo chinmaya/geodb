@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Globe</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                <H1>{{result.city_detail.name}}</H1>
+                <div>
+                    <span>{{ result.city_detail.ad1 }} {{ result.city_detail.ad2 }} {{ result.city_detail.country }}</span>
+                    <label>Population</label>
+                    <span>{{ result.city_detail.population }}</span>
+                </div>
+                <div>
+                    {{ result.city_detail.altnames }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <h4>Nearest Cities</h4>
+                <ul class="list-group">
+                    {% for item in result.neighbors %}
+                    <li class="list-group-item">
+                        <div>
+                            <div>
+                                <span>{{ item[0].name }}, {{ item[0].ad1 }} {{ item[0].ad2 }} {{ item[0].country }}, </span>
+                                <span>{{ item[1] }} km</span>
+                                <span>Population</span>
+                                <span>{{ item[0].population }}. </span>
+                                <a href="/city/{{ item[0].geonameid }}">Visit</a>
+                                </h5>
+                            </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

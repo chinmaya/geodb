@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Globe</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="main" class="row">
+            <div class="container">
+                <H1 class="jumbotron">Globe Index</H1>
+                <div class="col-12">
+                    <form action="/search" method="POST">
+                        <input class="col-8 input input-lg" name="q" type="text" focused="true" />
+                        <button class="btn btn-primary btn-lg" type="submit" value="Submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% if results %}
+        <div id="results" class="row">
+            <div class="container">
+                <div>
+                    <h3 class="">Results</h3>
+                </div>
+                <div>
+                    <ul id="navigation" class="list-group">
+                        {% for item in results %}
+                        <li class="list-group-item">
+                            <a href="/city/{{ item.geonameid }}">{{ item.name }}, {{ item.ad1 }} {{ item.ad2 }} {{ item.country }} </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+</body>
+
+</html>
