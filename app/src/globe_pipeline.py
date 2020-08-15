@@ -1,7 +1,7 @@
 
 from pipeline import Pipeline
 from globe_services import lookup, City
-import codecs
+import gzip
 
 def init_services(file_name):
     """ Initialize all services """
@@ -9,7 +9,7 @@ def init_services(file_name):
     names_service = lookup("SearchService")
     index_service = lookup("GeoIndex")
     print("Parsing filename", file_name)
-    with codecs.open(file_name, mode="rb", encoding="utf-8") as cities:
+    with gzip.open(file_name, mode="rb") as cities:
         pipeline = Pipeline(cities)
         pipeline.add_mapper(lambda line: City(line))
         pipeline.add_handler_group(
@@ -22,7 +22,7 @@ def test():
     """ Sample test """
     import time
     start = time.clock()
-    init_services("cities1000.txt")
+    init_services("cities1000.txt.gz")
     print("Init done", time.clock() - start)
 
     search_service = lookup("SearchService")

@@ -7,7 +7,7 @@ from globe_pipeline import init_services
 app = Flask(__name__)
 id_service, search_service, index_service = None, None, None
 print("Initialing database")
-init_services("cities1000.txt")
+init_services("cities1000.txt.gz")
 print("Initialization complete")
 
 with app.app_context():
